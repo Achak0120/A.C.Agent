@@ -8,8 +8,8 @@ care of it.
 ## Concept
 
 The system is structured as a tree of organizational branches, each mapped to
-a personal process you need to manage (e.g. finances, health, projects,
-errands, reading list, home maintenance — whatever branches you define).
+a personal process you need to manage (e.g. notes-to-self, recipes, projects,
+errands, reading list, home maintenance, digital closet — whatever branches you define).
 
 - **Chat input (frontend)**: You type in a piece of info.
 - **Chat feedback (frontend)**: You can access another page where you can ask for the CEO-AI to access all branches in the tree and retrieve the information you wish to see
