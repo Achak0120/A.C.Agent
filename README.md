@@ -51,11 +51,3 @@ defined.
 - Where data lives and how branches read/write without conflicting with each
   other.
 - Frontend platform/framework for the chat-input interface.
-
-
-## current notes
-- simple front-end that has:
-  1. chatbox for natural-language inputs
-  2. branch selection feature to pipeline NL input to corresponding branch
-- each branch is like its own engine running its own system and packaging and organizing the input I give it
-*this file was created by Claude Code

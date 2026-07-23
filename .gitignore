@@ -20,3 +20,6 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Vite plugin-generated session data
+**/vault/temp/

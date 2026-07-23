@@ -30,19 +30,36 @@ const HomePage = () => {
 
     const canSend = text.trim().length > 0 && !sending;
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!canSend) return;
         setSending(true);
         setSubmitted(null);
-        setTimeout(() => {
-            setSending(false);
-            setSubmitted({
-                text: text.trim(),
-                branch: branch.label,
-                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                chars: text.trim().length,
+
+        /* tries to send the inut text from textbox to Flask via route:
+        localhost:5000/api/entries */
+        try {
+            const response = await fetch('http://localhost:5000/api/entries', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    text: text,
+                    branch_val: branch
+                })
             });
-        }, 850);
+
+            if (!response.ok) {
+                throw new Error(`Request failed: ${response.status}`);
+            }
+
+            const sent_data = {branch: branch.label, chars: text.trim().length, time: new Date().toLocaleTimeString(), text: text}
+            setSubmitted(sent_data);
+        }
+
+        catch (error) {
+            console.error(error);
+        } finally {
+            setSending(false);
+        }
     };
 
     const reset = () => {
@@ -197,6 +214,7 @@ const HomePage = () => {
                                     <div className="flex items-center justify-between gap-3">
                                         <h3 className="font-display font-bold text-emerald-900">Message dispatched</h3>
                                         <button
+                                        
                                             onClick={reset}
                                             className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold text-emerald-600 transition hover:bg-emerald-100"
                                         >
